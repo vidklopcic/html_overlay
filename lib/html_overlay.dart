@@ -54,20 +54,6 @@ class _HtmlOverlayState extends State<HtmlOverlay> {
   }
 }
 
-abstract class HtmlMessage<T> {
-  final String type;
-
-  String serialize(T data);
-
-  T deserialize(String data);
-
-  void onMessage(T data);
-
-  void sendMessage(T data) {}
-
-  HtmlMessage({required this.type});
-}
-
 class HtmlContainer {
   final String? querySelector;
   late html.Element container;
