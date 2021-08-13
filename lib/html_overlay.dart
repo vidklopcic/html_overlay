@@ -37,7 +37,11 @@ class _HtmlPlatformViewState extends State<HtmlPlatformView> {
     _container = HtmlContainer(content: widget.html, querySelector: widget.querySelector);
   }
 
-  void _fromJs(args) {}
+  @override
+  void dispose() {
+    super.dispose();
+    _container.dispose();
+  }
 
   void _onPositionChanged(PositionInfo info) {
     _container.reposition(info);
@@ -70,6 +74,10 @@ class HtmlContainer {
       container.setInnerHtml(content, treeSanitizer: html.NodeTreeSanitizer.trusted);
       container.style.position = 'fixed';
       container.style.zIndex = '100';
+      container.style.pointerEvents = 'none';
+      container.style.overflow = 'hidden';
+      container.style.height = '0';
+      container.style.width = '0';
       html.document.body!.append(container);
     }
   }
@@ -84,5 +92,9 @@ class HtmlContainer {
     final left = info.visibleBounds.left - info.widgetBounds.left;
     final right = info.widgetBounds.right - info.visibleBounds.right;
     container.style.clipPath = 'inset(${top}px ${right}px ${bottom}px ${left}px)';
+  }
+
+  void dispose() {
+    container.remove();
   }
 }
