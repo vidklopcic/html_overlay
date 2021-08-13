@@ -80,7 +80,7 @@ class HtmlContainer {
     } else {
       container = html.DivElement();
       container.setInnerHtml(content, treeSanitizer: html.NodeTreeSanitizer.trusted);
-      container.style.position = 'fixed';
+      container.style.position = 'absolute';
       container.style.zIndex = '100';
       container.style.pointerEvents = 'none';
       container.style.overflow = 'hidden';
