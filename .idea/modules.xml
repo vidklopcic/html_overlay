@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/html_overlay.iml" filepath="$PROJECT_DIR$/html_overlay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/html_overlay_example_android.iml" filepath="$PROJECT_DIR$/example/android/html_overlay_example_android.iml" />
       <module fileurl="file://$PROJECT_DIR$/android/html_platform_view_android.iml" filepath="$PROJECT_DIR$/android/html_platform_view_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/android/html_platform_view_example_android.iml" filepath="$PROJECT_DIR$/example/android/html_platform_view_example_android.iml" />
     </modules>
   </component>
 </project>
