@@ -6,12 +6,16 @@ class HtmlOverlay extends StatefulWidget {
   final String? html;
   final String? querySelector;
   final Widget? child;
+  final VoidCallback? onAttached;
+  final VoidCallback? onRemoved;
 
   const HtmlOverlay({
     Key? key,
     this.html,
     this.querySelector,
     this.child,
+    this.onAttached,
+    this.onRemoved,
   }) : super(key: key);
 
   @override
@@ -35,12 +39,14 @@ class _HtmlOverlayState extends State<HtmlOverlay> {
   void initState() {
     super.initState();
     _container = HtmlContainer(content: widget.html, querySelector: widget.querySelector);
+    if (widget.onAttached != null) widget.onAttached!();
   }
 
   @override
   void dispose() {
     super.dispose();
     _container.dispose();
+    if (widget.onRemoved != null) widget.onRemoved!();
   }
 
   void _onPositionChanged(PositionInfo info) {
@@ -63,12 +69,14 @@ abstract class HtmlMessage<T> {
 }
 
 class HtmlContainer {
+  final String? querySelector;
   late html.Element container;
 
-  HtmlContainer({String? content, String? querySelector}) {
+  HtmlContainer({String? content, this.querySelector}) {
     assert(content != null || querySelector != null);
     if (querySelector != null) {
-      container = html.document.querySelector(querySelector)!;
+      container = html.document.querySelector(querySelector!)!;
+      container.style.display = 'block';
     } else {
       container = html.DivElement();
       container.setInnerHtml(content, treeSanitizer: html.NodeTreeSanitizer.trusted);
@@ -76,10 +84,10 @@ class HtmlContainer {
       container.style.zIndex = '100';
       container.style.pointerEvents = 'none';
       container.style.overflow = 'hidden';
-      container.style.height = '0';
-      container.style.width = '0';
       html.document.body!.append(container);
     }
+    container.style.height = '0';
+    container.style.width = '0';
   }
 
   void reposition(PositionInfo info) {
@@ -95,6 +103,10 @@ class HtmlContainer {
   }
 
   void dispose() {
-    container.remove();
+    if (querySelector != null) {
+      container.style.display = 'none';
+    } else {
+      container.remove();
+    }
   }
 }
