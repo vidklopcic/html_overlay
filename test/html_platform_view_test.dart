@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await HtmlPlatformView.platformVersion, '42');
+    expect(await HtmlOverlay.platformVersion, '42');
   });
 }

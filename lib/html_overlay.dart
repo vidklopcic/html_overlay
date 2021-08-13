@@ -2,12 +2,12 @@ import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:html_overlay/position_detector/position_detector.dart';
 
-class HtmlPlatformView extends StatefulWidget {
+class HtmlOverlay extends StatefulWidget {
   final String? html;
   final String? querySelector;
   final Widget? child;
 
-  const HtmlPlatformView({
+  const HtmlOverlay({
     Key? key,
     this.html,
     this.querySelector,
@@ -15,10 +15,10 @@ class HtmlPlatformView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _HtmlPlatformViewState createState() => _HtmlPlatformViewState();
+  _HtmlOverlayState createState() => _HtmlOverlayState();
 }
 
-class _HtmlPlatformViewState extends State<HtmlPlatformView> {
+class _HtmlOverlayState extends State<HtmlOverlay> {
   GlobalKey key = GlobalKey();
   late HtmlContainer _container;
 

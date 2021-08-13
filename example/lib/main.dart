@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: ListView.builder(
           itemBuilder: (context, i) => i % 2 == 0
-              ? HtmlPlatformView(
+              ? HtmlOverlay(
                   html:
                       '<div style="opacity: 0.5; background-color: red; width: 100%; height: 100%; color: white; font-weight: bold; display: flex; justify-content: center; align-items: center;">HTML container $i</div>',
                   child: ListTile(
