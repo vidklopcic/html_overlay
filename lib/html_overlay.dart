@@ -6,7 +6,7 @@ class HtmlOverlay extends StatefulWidget {
   final String? html;
   final String? querySelector;
   final Widget? child;
-  final VoidCallback? onAttached;
+  final ValueChanged<HtmlContainer>? onAttached;
   final VoidCallback? onRemoved;
 
   const HtmlOverlay({
@@ -19,12 +19,12 @@ class HtmlOverlay extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _HtmlOverlayState createState() => _HtmlOverlayState();
+  HtmlOverlayState createState() => HtmlOverlayState();
 }
 
-class _HtmlOverlayState extends State<HtmlOverlay> {
+class HtmlOverlayState extends State<HtmlOverlay> {
   GlobalKey key = GlobalKey();
-  late HtmlContainer _container;
+  late HtmlContainer container;
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +38,19 @@ class _HtmlOverlayState extends State<HtmlOverlay> {
   @override
   void initState() {
     super.initState();
-    _container = HtmlContainer(content: widget.html, querySelector: widget.querySelector);
-    if (widget.onAttached != null) widget.onAttached!();
+    container = HtmlContainer(content: widget.html, querySelector: widget.querySelector);
+    if (widget.onAttached != null) widget.onAttached!(container);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _container.dispose();
+    container.dispose();
     if (widget.onRemoved != null) widget.onRemoved!();
   }
 
   void _onPositionChanged(PositionInfo info) {
-    _container.reposition(info);
+    container.reposition(info);
   }
 }
 
