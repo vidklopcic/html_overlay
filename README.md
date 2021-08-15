@@ -5,7 +5,7 @@ Simple plugin that keeps selected HTML container exactly aligned with the underl
 # user interactions
 **`pointer-events` are set to `none` by default. For items that need interaction, set `pointer-events: auto`!**
 
-To prevent Flutter from reacting to keypresses that are intended for the HTML overlay, add the following listeners to the focused element:
+To prevent Flutter from reacting to keypresses that are intended for the HTML overlay, add the following listeners to the focusable HTML element:
 ```Dart
 _editorElement!.addEventListener('keydown', (e) {
   e.stopPropagation();
