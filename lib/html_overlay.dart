@@ -55,6 +55,7 @@ class HtmlOverlayState extends State<HtmlOverlay> {
 }
 
 class HtmlContainer {
+  static const kContainerClass = 'html-overlay-container';
   final String? querySelector;
   late html.Element container;
 
@@ -70,10 +71,17 @@ class HtmlContainer {
       container.style.zIndex = '100';
       container.style.pointerEvents = 'none';
       container.style.overflow = 'hidden';
+      container.classes.add(kContainerClass);
       html.document.body!.append(container);
     }
     container.style.height = '0';
     container.style.width = '0';
+  }
+
+  static void removeAllContainers() {
+    for (final e in html.document.querySelectorAll('.$kContainerClass')) {
+      e.remove();
+    }
   }
 
   void reposition(PositionInfo info) {
