@@ -22,9 +22,6 @@ In order to allow scrolling despite setting `pointer-events: auto` you can use t
 ```Dart
 final glassPane = html.document.querySelector('flt-glass-pane')!;
 _editorElement!.addEventListener('wheel', (e) {
-  Future.delayed(Duration(microseconds: 1)).then((value) {
-    e = e as html.WheelEvent;
-    glassPane.dispatchEvent(e);
-  });
+  Future.delayed(Duration(microseconds: 1)).then((value) => glassPane.dispatchEvent(e));
 });
 ```
