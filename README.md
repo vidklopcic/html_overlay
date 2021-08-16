@@ -17,3 +17,14 @@ _editorElement!.addEventListener('keypress', (e) {
   e.stopPropagation();
 });
 ```
+
+In order to allow scrolling despite setting `pointer-events: auto` you can use this hack:
+```Dart
+final glassPane = html.document.querySelector('flt-glass-pane')!;
+_editorElement!.addEventListener('wheel', (e) {
+  Future.delayed(Duration(microseconds: 1)).then((value) {
+    e = e as html.WheelEvent;
+    glassPane.dispatchEvent(e);
+  });
+});
+```
