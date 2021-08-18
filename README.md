@@ -25,3 +25,10 @@ _editorElement!.addEventListener('wheel', (e) {
   Future.delayed(Duration(microseconds: 1)).then((value) => glassPane.dispatchEvent(e));
 });
 ```
+
+If Flutter holds focus in eg. TextField, HTML overlay won't be able to capture it unless you call unfocus first:
+```Dart
+_editorElement!.addEventListener('mousedown', (e) {
+  WidgetsBinding.instance!.focusManager.primaryFocus?.unfocus();
+});
+```
