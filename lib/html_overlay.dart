@@ -70,7 +70,7 @@ class HtmlContainer {
       container.style.position = 'absolute';
       container.style.zIndex = '100';
       container.style.pointerEvents = 'none';
-      container.style.overflow = 'hidden';
+      container.style.overflow = 'visible';
       container.classes.add(kContainerClass);
       html.document.body!.append(container);
     }
