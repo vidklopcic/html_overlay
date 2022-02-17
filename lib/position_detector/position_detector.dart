@@ -8,7 +8,6 @@ import 'dart:math' show max;
 
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-
 import 'render_sliver_position_detector.dart';
 import 'render_position_detector.dart';
 
@@ -33,9 +32,7 @@ class PositionDetector extends SingleChildRenderObjectWidget {
     required Key key,
     required Widget child,
     required this.onPositionChanged,
-  })  : assert(key != null),
-        assert(child != null),
-        super(key: key, child: child);
+  }) : super(key: key, child: child);
 
   /// The callback to invoke when this widget's visibility changes.
   final PositionChangedCallback? onPositionChanged;
@@ -124,9 +121,8 @@ class PositionInfo {
     assert(widgetBounds != null);
     assert(clipRect != null);
 
-    final visibleBounds = widgetBounds.overlaps(clipRect)
-        ? widgetBounds.intersect(clipRect)
-        : Rect.zero;
+    final visibleBounds =
+        widgetBounds.overlaps(clipRect) ? widgetBounds.intersect(clipRect) : Rect.zero;
 
     return PositionInfo(key: key, widgetBounds: widgetBounds, visibleBounds: visibleBounds);
   }

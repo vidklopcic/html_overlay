@@ -273,7 +273,7 @@ class PositionDetectorLayer extends ContainerLayer {
   void addToScene(ui.SceneBuilder builder, [Offset layerOffset = Offset.zero]) {
     _layerOffset = layerOffset;
     _scheduleUpdate();
-    super.addToScene(builder, layerOffset);
+    super.addToScene(builder);
   }
 
   /// See [AbstractNode.attach].
